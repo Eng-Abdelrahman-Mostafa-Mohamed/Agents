@@ -1,1 +1,15 @@
-Convert YearlyChange column to numeric type and sort in descending order
+import matplotlib.pyplot as plt
+import numpy as np
+
+# assume you have the data for world population and growth rate
+years = np.arange(2020, 2101)
+population = ...
+growth_rate = ...
+
+net_change = growth_rate * population
+
+plt.plot(years, net_change)
+plt.xlabel('Year')
+plt.ylabel('Net Change')
+plt.title('Net Change in World Population')
+plt.show()

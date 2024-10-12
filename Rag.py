@@ -39,20 +39,20 @@ data = pd.read_csv('WorldPopulation2023.csv')
 print(data)
 
 # Initialize the Pandas Query Engine
-population_pandas_query_engine = PandasQueryEngine(df=data, verbose=True, instruction_str=instruction_str)
+population_pandas_query_engine = PandasQueryEngine(df=data,llm=llm , verbose=True, instruction_str=instruction_str , synthesize_response=True)
 population_pandas_query_engine.update_prompts({"pandas_prompt": new_prompt})
 
 # Create tools for the agent
 tools = [
-        note_engine,
         QueryEngineTool(
         query_engine=population_pandas_query_engine,
         metadata=ToolMetadata(
             name="population_data",
             description="Provides information on world population and demographics.",
         ),
+        
     ),
-    
+    note_engine,
 
     # QueryEngineTool(
     #     query_engine=code_runner_engine,
