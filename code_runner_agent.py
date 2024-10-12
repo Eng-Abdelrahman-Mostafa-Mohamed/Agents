@@ -1,0 +1,85 @@
+# # from llama_index.core.tools import function_tool
+# from llama_index.core.tools import FunctionTool
+# import subprocess
+# import os
+
+# def run_code(code):
+#     try:
+#         temp_file_path = 'temp_script.py'
+#         with open(temp_file_path, 'w') as f:
+#             f.write(code)
+
+#         process = subprocess.run(['python3', temp_file_path], check=True, text=True, capture_output=True)
+
+#         os.remove(temp_file_path)
+#         output = process.stdout
+#         return output
+#     except subprocess.CalledProcessError as e:
+#         return f"Error occurred: {e.stderr}"
+
+# # # code_syntax = """
+# # # import pandas as pd
+# # # population = pd.read_csv("/home/abdelrahman/Documents/learning_RAG/WorldPopulation2023.csv")
+# # # Armenia_population = population[population['Country'] == 'Armenia']
+# # # avg_population = Armenia_population['Population2023'].mean()
+# # # print('The average population of countries in Asia is:', avg_population)
+# # # """
+
+# # # output = run_code(code_syntax)
+# # # print(output)
+
+
+
+# code_runner_engine = FunctionTool.from_defaults(fn=run_code
+#                                                        ,name='code_runner',
+#                                                        description='this run the generated code which is {code} in terminal and save outputs into {output} ',
+#                                                     #    inputs=['note'],
+#                                                     )
+
+# # from llama_index.core.tools import FunctionTool
+# # import subprocess
+# # import os
+# # import uuid
+
+# # def run_code(code: str) -> str:
+
+# #     try:
+# #         # Use a unique temporary file name
+# #         temp_file_path = f'temp_script_{uuid.uuid4()}.py'
+        
+# #         with open(temp_file_path, 'w') as f:
+# #             f.write(code)
+
+# #         process = subprocess.run(
+# #             ['python3', temp_file_path],
+# #             check=True,
+# #             text=True,
+# #             capture_output=True
+# #         )
+
+# #         # Remove the temporary file after execution
+# #         os.remove(temp_file_path)
+# #         return process.stdout
+# #     except subprocess.CalledProcessError as e:
+# #         return f"Error occurred: {e.stderr}"
+# #     except Exception as e:
+# #         return f"An unexpected error occurred: {str(e)}"
+
+# # Example usage
+# # code_syntax = """
+# # import pandas as pd
+# # population = pd.read_csv("/home/abdelrahman/Documents/learning_RAG/WorldPopulation2023.csv")
+# # Armenia_population = population[population['Country'] == 'Armenia']
+# # avg_population = Armenia_population['Population2023'].mean()
+# # print('The average population of Armenia in 2023 is:', avg_population)
+# # """
+
+# # output = run_code(code_syntax)
+# # print(output)
+
+# # Define the FunctionTool for the code runner
+# code_runner_engine = FunctionTool.from_defaults(
+#     fn=run_code,
+#     name='code_runner',
+#     description='This runs the generated code which is code in the terminal and saves outputs into output.'
+# )
