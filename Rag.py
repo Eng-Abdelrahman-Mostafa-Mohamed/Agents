@@ -13,6 +13,7 @@ from nomic import embed
 from Notes import note_engine
 from llama_index.core.tools import QueryEngineTool, ToolMetadata
 from llama_index.core.agent import ReActAgent
+from llama_index import ConversationBufferMemory
 
 # from code_runner_agent import code_runner_engine  #try to make code runner agent 
 
@@ -62,6 +63,7 @@ tools = [
     #     ),
     # ),
 ]
+memory = ConversationBufferMemory()
 
 # Initialize the agent
 agent = ReActAgent(
