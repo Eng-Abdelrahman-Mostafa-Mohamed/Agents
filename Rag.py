@@ -13,8 +13,8 @@ from nomic import embed
 from Notes import note_engine
 from llama_index.core.tools import QueryEngineTool, ToolMetadata
 from llama_index.core.agent import ReActAgent
-from llama_index import ConversationBufferMemory
-
+# from llama_index import ConversationBufferMemory
+#
 # from code_runner_agent import code_runner_engine  #try to make code runner agent 
 
 # Set your API keys
@@ -25,8 +25,8 @@ os.environ['OPENAI_API_KEY'] = 'sk-mFBq7t6V5-OGh223N1le4a4q8RCoLjUUFU4Fms-7B5T3B
 # for reducting using open AI  and making model more fast 
 llm = Groq(model="llama3-70b-8192", api_key=os.getenv('GROQ-API-KEY'))
 
-def nomic_embed_model(text):
-    return embed(text)
+# def nomic_embed_model(text):  #i tried to use this embeding model replaced to openAI 
+#     return embed(text)
 # 
 Settings.llm = llm
 Settings.node_parser = SentenceSplitter(chunk_size=512, chunk_overlap=20)
