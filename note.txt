@@ -1,12 +1,11 @@
 import matplotlib.pyplot as plt
 import numpy as np
-
+import pandas as pd 
 # assume you have the data for world population and growth rate
 years = np.arange(2020, 2101)
-population = ...
-growth_rate = ...
+data=pd.read_csv("WorldPopulation2023.csv")
 
-net_change = growth_rate * population
+net_change = data["NetChange"]
 
 plt.plot(years, net_change)
 plt.xlabel('Year')

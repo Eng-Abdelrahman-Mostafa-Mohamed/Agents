@@ -17,7 +17,16 @@ def run_code(code):
     except subprocess.CalledProcessError as e:
         return f"Error occurred: {e.stderr}"
 
+# # code_syntax = """
+# # import pandas as pd
+# # population = pd.read_csv("/home/abdelrahman/Documents/learning_RAG/WorldPopulation2023.csv")
+# # Armenia_population = population[population['Country'] == 'Armenia']
+# # avg_population = Armenia_population['Population2023'].mean()
+# # print('The average population of countries in Asia is:', avg_population)
+# # """
 
+# # output = run_code(code_syntax)
+# # print(output)
 
 
 
@@ -27,7 +36,34 @@ code_runner_engine = FunctionTool.from_defaults(fn=run_code
                                                     #    inputs=['note'],
                                                     )
 
+# from llama_index.core.tools import FunctionTool
+# import subprocess
+# import os
+# import uuid
 
+# def run_code(code: str) -> str:
+
+#     try:
+#         # Use a unique temporary file name
+#         temp_file_path = f'temp_script_{uuid.uuid4()}.py'
+        
+#         with open(temp_file_path, 'w') as f:
+#             f.write(code)
+
+#         process = subprocess.run(
+#             ['python3', temp_file_path],
+#             check=True,
+#             text=True,
+#             capture_output=True
+#         )
+
+#         # Remove the temporary file after execution
+#         os.remove(temp_file_path)
+#         return process.stdout
+#     except subprocess.CalledProcessError as e:
+#         return f"Error occurred: {e.stderr}"
+#     except Exception as e:
+#         return f"An unexpected error occurred: {str(e)}"
 
 
 code_syntax = """
@@ -50,7 +86,6 @@ plt.show()
 output = run_code(code_syntax)
 print(output)
 
-#this is my note this part is creating code runner Queryagent to pass as toolagent to agent_sytem
 # Define the FunctionTool for the code runner
 # code_runner_engine = FunctionTool.from_defaults(
 #     fn=run_code,
