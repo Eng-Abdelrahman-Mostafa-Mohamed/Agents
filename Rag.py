@@ -13,7 +13,7 @@ from nomic import embed
 from Notes import note_engine
 from llama_index.core.tools import QueryEngineTool, ToolMetadata
 from llama_index.core.agent import ReActAgent
-# from llama_index import ConversationBufferMemory
+# from llama_index.core.memory import ChatMemoryBuffer
 #
 # from code_runner_agent import code_runner_engine  #try to make code runner agent 
 
@@ -63,7 +63,7 @@ tools = [
     #     ),
     # ),
 ]
-memory = ConversationBufferMemory()
+# memory = ChatMemoryBuffer()
 
 # Initialize the agent
 agent = ReActAgent(
@@ -71,7 +71,7 @@ agent = ReActAgent(
     llm=llm,
     verbose=True,
     context='The agent assists users by providing accurate information about world population statistics, generating code, and executing it.',
-    memory=None
+    memory=None,
 )
 
 # Main loop for user interaction
