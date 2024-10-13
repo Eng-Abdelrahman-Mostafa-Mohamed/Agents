@@ -11,5 +11,5 @@ there is many types of Rags like fussion Rag -> which use the web as source
                                   and so on 
 
 but in this code we have Multi-agents each agent has task  like -we have note saver agent 
-                                                                -code runner agent to check that code is true 
+->  ->            -code runner agent to check that code is true  -->could save generated code as not and read code from note --> passing to llm model to do first check -->pass the code after llm into code_runner_engin(agent)
                                                                 - and so on 
