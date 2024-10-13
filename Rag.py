@@ -27,7 +27,7 @@ llm = Groq(model="llama3-70b-8192", api_key=os.getenv('GROQ-API-KEY'))
 
 def nomic_embed_model(text):
     return embed(text)
-
+# 
 Settings.llm = llm
 Settings.node_parser = SentenceSplitter(chunk_size=512, chunk_overlap=20)
 Settings.num_output = 512
