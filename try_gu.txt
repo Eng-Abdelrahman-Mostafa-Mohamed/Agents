@@ -1,0 +1,36 @@
+st.title("World Population Data Query")
+st.image("alphaspheredotai_logo.jpeg", width=200)  # Add your logo image path here
+st.write("Produced by [AlphaSphere](https://alphaspheredotai.github.io/)")
+
+prompt = st.text_input("Enter a prompt (q to quit):")
+
+
+if st.button("Submit"):
+    if prompt and prompt.lower() != 'q':
+        # Process the query using the agent
+        result = responser_noter_codeGeneration_agent.query(prompt)
+        
+        # Display the agent's response
+        st.write("Agent Response:")
+        st.write(result)
+        
+        # If the result contains a plot, display it
+        if "plot" in prompt.lower():
+            # Example plot (replace with your actual plotting code)
+            plt.figure(figsize=(10, 6))
+            data.plot(kind='line')
+            plt.title('Example Plot')
+            plt.xlabel('X-axis')
+            plt.ylabel('Y-axis')
+            st.pyplot(plt)
+
+# Display code from note.txt
+if st.button("View Code from note.txt"):
+    with open('note.txt', 'r') as file:
+        code = file.read()
+        code_copy=code
+    st.code(code_copy, language='python')
+
+if st.button("Close"):
+    st.write("Closing the application.")
+    st.stop()

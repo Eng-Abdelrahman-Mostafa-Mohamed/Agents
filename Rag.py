@@ -16,77 +16,77 @@ from llama_index.core.agent import ReActAgent
 from llama_index.core.selectors import LLMMultiSelector, PydanticMultiSelector
 from llama_index.core.query_engine.router_query_engine import RouterQueryEngine
 from code_runner_agent import code_runner_engine
-
-# from llama_index.core.memory import ChatMemoryBuffer
-#
-# from code_runner_agent import code_runner_engine  #try to make code runner agent 
+from llama_index.core.memory import ChatMemoryBuffer
+from llama_index.embeddings.openai import OpenAIEmbedding
 
 # Set your API keys
 os.environ['GROQ-API-KEY'] = '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'
 os.environ['OPENAI_API_KEY'] = 'sk-mFBq7t6V5-OGh223N1le4a4q8RCoLjUUFU4Fms-7B5T3BlbkFJTOnS6lFV5F03K66Okiy1uKKOgBVLFSw7BLlKh4gtsA'
 
-# Initialize the Groq model
-# for reducting using open AI  and making model more fast 
+# Initialize the Groq model with the latest Llama version
 llm = Groq(model="llama3-70b-8192", api_key=os.getenv('GROQ-API-KEY'))
 
-# def nomic_embed_model(text):  #i tried to use this embeding model replaced to openAI 
-#     return embed(text)
-# 
+# Set the LLM and embedding model in the settings
 Settings.llm = llm
+Settings.embed_model = OpenAIEmbedding(model="text-embedding-ada-002", embed_batch_size=100)
 Settings.node_parser = SentenceSplitter(chunk_size=512, chunk_overlap=20)
 Settings.num_output = 512
 Settings.context_window = 3900
 
-
-
 # Load the population data
-local_data_path='WorldPopulation2023.csv'
-data = pd.read_csv(local_data_path)
+try:
+    data = pd.read_csv('WorldPopulation2023.csv')
+    print("Data loaded successfully")
+except FileNotFoundError:
+    print("File not found. Please check the file path.")
+    exit()
 
-
-data_str= str(data.head())
+data_str = str(data.head())
 print(data)
 
 # Initialize the Pandas Query Engine
-population_pandas_query_engine = PandasQueryEngine(df=data,data_str=data_str,llm=llm , verbose=True, instruction_str=instruction_str , synthesize_response=True)
+population_pandas_query_engine = PandasQueryEngine(
+    df=data,
+    data_str=data_str,
+    llm=llm,
+    verbose=True,
+    instruction_str=instruction_str,
+    synthesize_response=True
+)
 population_pandas_query_engine.update_prompts({"pandas_prompt": new_prompt})
 
 # Create tools for the agent
 tools = [
-        QueryEngineTool.from_defaults(
+    QueryEngineTool.from_defaults(
         query_engine=population_pandas_query_engine,
-
-        # metadata=ToolMetadata(
-        #     name="population_data",
-        #     description="Provides information on world population and demographics.",
-        # ),
-        
+        metadata=ToolMetadata(
+            name="population_data",
+            description="Provides information on world population and demographics.",
+        ),
     ),
     note_engine,
     code_runner_engine,
 ]
-# memory = ChatMemoryBuffer()
 
-# Initialize the agent
+# Initialize the memory buffer
+memory = ChatMemoryBuffer()
+
+# Initialize the agent with memory
 responser_noter_codeGeneration_agent = ReActAgent(
-    
     tools=tools,
     llm=llm,
     verbose=True,
-    context=f'The agent assists users by providing accurate information about world population statistics, generating code, and executing it from {local_data_path}. If it doesn\'t find the response from it, it searches or creates or does the best to give the best and accurate results.',
-    memory=None,
+    context='The agent assists users by providing accurate information about world population statistics, generating code, and executing it.',
+    memory=memory,
 )
-
 
 # Main loop for user interaction
 while (prompt := input("Enter a prompt (q to quit): ")) != "q":
     # Process the query using the agent
-
-    result = responser_noter_codeGeneration_agent.query(prompt)
-    
-    # Print the agent's response
-    print("Agent Response:")
-    print(result)
-
-
-
+    try:
+        result = responser_noter_codeGeneration_agent.query(prompt)
+        # Print the agent's response
+        print("Agent Response:")
+        print(result)
+    except Exception as e:
+        print(f"An error occurred: {e}")

@@ -1,0 +1,1 @@
+give me barchart plot for Population2023 of Afghanistan ,  Albania and Western Sahara then run generated code into terminal then save code as note

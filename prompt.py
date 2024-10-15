@@ -5,15 +5,31 @@ from llama_index.core.prompts import (
 
 
 
+# instruction_str = """\
+#     1. Convert the query to executable Python code using Pandas.
+#     2. The final line of code should be a Python expression that can be called with the `eval()` function.
+#     3. The code should represent a solution to the query.
+#     4. PRINT ONLY THE EXPRESSION.
+#     5. Do not quote the expression.
+#     6. data is the local data stored in the bath that you know
+#     7. you must run code to find the columns of data to know its and match the input columns name from user to correct column name in data to generate correct code 
+#     """
+    
 instruction_str = """\
     1. Convert the query to executable Python code using Pandas.
-    2. The final line of code should be a Python expression that can be called with the `eval()` function.
-    3. The code should represent a solution to the query.
-    4. PRINT ONLY THE EXPRESSION.
-    5. Do not quote the expression.
-    6. when i tell you use data i refer to local data stored in the bath that you know
+    2. Ensure the final line of code is a Python expression that can be executed with the `eval()` function.
+    3. The code should accurately represent a solution to the query.
+    4. PRINT ONLY THE EXPRESSION without any additional text or formatting.
+    5. Do not enclose the expression in quotes.
+    6. The variable `data` refers to the local dataset stored at the specified path.
+    7. Before generating the code, run a preliminary script to identify the columns in the dataset.
+    8. Match the input column names provided by the user to the correct column names in the dataset to ensure the generated code is accurate.
+    9. If the query involves plotting or visualizing data, ensure the code includes the necessary import statements and plotting commands.
+    10. If the query cannot be resolved with the local data, indicate that a web search will be performed to find the best possible response.
+    11. Generate the code but do not execute it in the terminal. Instead, provide the code as output for review.
+    12. If the user requests to run the code, use the `code_runner_agent` to execute it and display the results.
     """
-    
+
 
 new_prompt = PromptTemplate(
     """\
@@ -36,7 +52,7 @@ new_prompt = PromptTemplate(
 # new_prompt = f"{new_prompt} /n the path of local data is {local_data_path}"
 context = """Purpose: The primary role of this agent is to assist users by providing accurate 
             information about world population statistics and details about a country and have abillity to generate full python 
-            code that give the answer of query from data (full code with imports) generated_code_from_agents is stored in {coda} but if i didnt ask you to give me code --> give me result directly or my query 
+            code that give the answer of query from data (full code with imports)  {generated_code} but if i didnt ask you to give me code --> give me result directly or my query 
              
 . """
 

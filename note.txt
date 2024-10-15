@@ -1,8 +1,1 @@
-import pandas as pd
-import matplotlib.pyplot as plt
-
-data = pd.read_csv('WorldPopulation2023.csv')
-for column in data.columns:
-    plt.hist(data[column], bins=50)
-    plt.title(f'Distribution of {column}')
-    plt.show()
+Pie chart of Land Area(Km²) has been generated and displayed in the terminal.
