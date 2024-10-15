@@ -90,3 +90,5 @@ while (prompt := input("Enter a prompt (q to quit): ")) != "q":
         print(result)
     except Exception as e:
         print(f"An error occurred: {e}")
+
+#give me barchart plot for Population of Afghanistan ,  Albania and Western Sahara then run generated code into terminal then save code as note
