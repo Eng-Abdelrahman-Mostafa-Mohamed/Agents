@@ -16,7 +16,7 @@ from llama_index.core.agent import ReActAgent
 from llama_index.core.selectors import LLMMultiSelector, PydanticMultiSelector
 from llama_index.core.query_engine.router_query_engine import RouterQueryEngine
 from code_runner_agent import code_runner_engine
-
+import streamlit as st
 # from llama_index.core.memory import ChatMemoryBuffer
 #
 # from code_runner_agent import code_runner_engine  #try to make code runner agent 
@@ -79,14 +79,27 @@ responser_noter_codeGeneration_agent = ReActAgent(
 
 
 # Main loop for user interaction
-while (prompt := input("Enter a prompt (q to quit): ")) != "q":
-    # Process the query using the agent
+# while (prompt := input("Enter a prompt (q to quit): ")) != "q":
+#     # Process the query using the agent
 
+#     result = responser_noter_codeGeneration_agent.query(prompt)
+    
+#     # Print the agent's response
+#     print("Agent Response:")
+#     print(result)
+
+#with GUI 
+st.title("World Population Data Query")
+st.image("path_to_logo_image.png", width=200)  # Add your logo image path here
+st.write("Produced by [Your Company Name]")
+
+prompt = st.text_input("Enter a prompt (q to quit):")
+
+if prompt and prompt.lower() != 'q':
+    # Process the query using the agent
     result = responser_noter_codeGeneration_agent.query(prompt)
     
-    # Print the agent's response
-    print("Agent Response:")
-    print(result)
-
-
+    # Display the agent's response
+    st.write("Agent Response:")
+    st.write(result)
 
