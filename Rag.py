@@ -13,8 +13,8 @@ from nomic import embed
 from Notes import note_engine
 from llama_index.core.tools import QueryEngineTool, ToolMetadata
 from llama_index.core.agent import ReActAgent
-from llama_index.core.selectors import LLMMultiSelector, PydanticMultiSelector
-from llama_index.core.query_engine.router_query_engine import RouterQueryEngine
+# from llama_index.core.selectors import LLMMultiSelector, PydanticMultiSelector
+# from llama_index.core.query_engine.router_query_engine import RouterQueryEngine
 from code_runner_agent import code_runner_engine
 from llama_index.core.memory import ChatMemoryBuffer
 from llama_index.embeddings.openai import OpenAIEmbedding
@@ -59,17 +59,15 @@ population_pandas_query_engine.update_prompts({"pandas_prompt": new_prompt})
 tools = [
     QueryEngineTool.from_defaults(
         query_engine=population_pandas_query_engine,
-        metadata=ToolMetadata(
-            name="population_data",
-            description="Provides information on world population and demographics.",
-        ),
+        name="population_data",
+        description="Provides information on world population and demographics.",
     ),
     note_engine,
     code_runner_engine,
 ]
 
 # Initialize the memory buffer
-memory = ChatMemoryBuffer()
+memory = ChatMemoryBuffer(token_limit=100)
 
 # Initialize the agent with memory
 responser_noter_codeGeneration_agent = ReActAgent(
@@ -90,5 +88,3 @@ while (prompt := input("Enter a prompt (q to quit): ")) != "q":
         print(result)
     except Exception as e:
         print(f"An error occurred: {e}")
-
-#give me barchart plot for Population of Afghanistan ,  Albania and Western Sahara then run generated code into terminal then save code as note
