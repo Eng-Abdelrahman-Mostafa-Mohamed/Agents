@@ -1,1 +1,1 @@
-Statistical summary of WorldPopulation2023.csv: \n
+The average population is 

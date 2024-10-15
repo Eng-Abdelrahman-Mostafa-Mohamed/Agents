@@ -15,15 +15,16 @@ instruction_str = """\
 new_prompt = PromptTemplate(
     """\
     You are working with a pandas dataframe in Python.
-    The name of the dataframe is `data`.
+    The name of the dataframe is data which stord in {data} variable .
     This is the result of `print(data.head())`:
-    {df_str}
+    {data_str}
     the generated code full with imports in python is {code} and please 
     Follow these instructions:
     {instruction_str}
-    and if i asked you run code and find results not fin results result directly to check that generated code is correct run code in terminal and output of code  
-    is {output}
-      
+    and if i asked you run code and find  results  not find result directly to check that generated code is correct run code in terminal and 
+    output of code using {code_runner_engine} which i add into agent as function_engin_tool  
+    is {output} and the output of responce is {responce} 
+    if you didnt find the answer from given data search on web and give me the best responces and before that tell me iam searching  
     
     Query: {query_str}
 
@@ -32,7 +33,7 @@ new_prompt = PromptTemplate(
 
 context = """Purpose: The primary role of this agent is to assist users by providing accurate 
             information about world population statistics and details about a country and have abillity to generate full python 
-            code that give the answer of query from data (full code with imports) the generated code is {generated_code_from_agents} but if ididnt ask you to give me code --> give me result directly or my query 
+            code that give the answer of query from data (full code with imports) generated_code_from_agents is stored in {coda} but if i didnt ask you to give me code --> give me result directly or my query 
 
 . """
 
