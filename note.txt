@@ -1,16 +1,13 @@
-import matplotlib.pyplot as plt
-import pandas as pd
+Code: import pandas as pd
+wp = pd.read_csv('WorldPopulation2023.csv')
+print(wp.head())
 
-data = {'Country': ['United States', 'Brazil', 'China', 'Japan', 'India'],
-         'Total Dentists': [200000, 150000, 500000, 100000, 250000],
-         'Mean Dentists per 100,000 people': [40, 30, 20, 80, 15],
-         'Standard Deviation': [10, 15, 20, 5, 25]}
+Output:
+    Rank         Country  Population2023  ... MedianAge  UrbanPop%  WorldShare
+0    36     Afghanistan        42239854  ...      17.0       26 %      0.53 %
+1   138         Albania         2832439  ...      38.0       67 %      0.04 %
+2    34         Algeria        45606480  ...      28.0       75 %      0.57 %
+3   212  American Samoa           43914  ...      29.0       N.A.      0.00 %
+4   202         Andorra           80088  ...      43.0       85 %      0.00 %
 
-df = pd.DataFrame(data)
-
-plt.figure(figsize=(10, 6))
-plt.bar(df['Country'], df['Mean Dentists per 100,000 people'])
-plt.xlabel('Country')
-plt.ylabel('Mean Dentists per 100,000 people')
-plt.title('Distribution of Dentists in 5 Countries')
-plt.show()
+[5 rows x 12 columns]

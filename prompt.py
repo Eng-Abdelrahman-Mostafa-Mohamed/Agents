@@ -10,12 +10,15 @@ instruction_str = """\
     2. The final line of code should be a Python expression that can be called with the `eval()` function.
     3. The code should represent a solution to the query.
     4. PRINT ONLY THE EXPRESSION.
-    5. Do not quote the expression."""
+    5. Do not quote the expression.
+    6. when i tell you use data i refer to local data stored in the bath that you know
+    """
+    
 
 new_prompt = PromptTemplate(
     """\
     You are working with a pandas dataframe in Python.
-    The name of the dataframe is data which stord in {data} variable .
+    The name of the dataframe is worledPobulation2023.csv which stord in {data}.
     This is the result of `print(data.head())`:
     {data_str}
     the generated code full with imports in python is {code} and please 
@@ -30,11 +33,11 @@ new_prompt = PromptTemplate(
 
     Expression: """
 )
-
+# new_prompt = f"{new_prompt} /n the path of local data is {local_data_path}"
 context = """Purpose: The primary role of this agent is to assist users by providing accurate 
             information about world population statistics and details about a country and have abillity to generate full python 
             code that give the answer of query from data (full code with imports) generated_code_from_agents is stored in {coda} but if i didnt ask you to give me code --> give me result directly or my query 
-
+             
 . """
 
 # from llama_index.core.prompts import (
@@ -77,3 +80,5 @@ context = """Purpose: The primary role of this agent is to assist users by provi
 #             information about world population statistics and details about a country, and has the ability to generate full Python 
 #             code that gives the answer to a query from data (including imports). The generated code is {generated_code_from_agents}. 
 #             It can also execute the code and provide the output using a function tool named `code_runner_engine`."""
+
+# print(new_prompt)

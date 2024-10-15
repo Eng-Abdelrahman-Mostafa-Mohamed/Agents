@@ -40,7 +40,10 @@ Settings.context_window = 3900
 
 
 # Load the population data
-data = pd.read_csv('WorldPopulation2023.csv')
+local_data_path='WorldPopulation2023.csv'
+data = pd.read_csv(local_data_path)
+
+
 data_str= str(data.head())
 print(data)
 
@@ -52,6 +55,7 @@ population_pandas_query_engine.update_prompts({"pandas_prompt": new_prompt})
 tools = [
         QueryEngineTool.from_defaults(
         query_engine=population_pandas_query_engine,
+
         # metadata=ToolMetadata(
         #     name="population_data",
         #     description="Provides information on world population and demographics.",
@@ -65,10 +69,11 @@ tools = [
 
 # Initialize the agent
 responser_noter_codeGeneration_agent = ReActAgent(
+    
     tools=tools,
     llm=llm,
     verbose=True,
-    context='The agent assists users by providing accurate information about world population statistics, generating code, and executing it.',
+    context=f'The agent assists users by providing accurate information about world population statistics, generating code, and executing it from {local_data_path}. If it doesn\'t find the response from it, it searches or creates or does the best to give the best and accurate results.',
     memory=None,
 )
 
