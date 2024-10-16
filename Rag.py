@@ -35,6 +35,7 @@ Settings.context_window = 3900
 
 # Load the population data
 try:
+    data_name ="WorldPopulation2023.csv"
     data = pd.read_csv('WorldPopulation2023.csv')
     print("Data loaded successfully")
 except FileNotFoundError:
@@ -74,7 +75,7 @@ responser_noter_codeGeneration_agent = ReActAgent(
     tools=tools,
     llm=llm,
     verbose=True,
-    context='The agent assists users by providing accurate information about world population statistics, generating code, and executing it.',
+    context=f'The agent assists users by providing accurate information about world population statistics of local data which is {data_name}, generating code, and executing it.',
     memory=memory,
 )
 

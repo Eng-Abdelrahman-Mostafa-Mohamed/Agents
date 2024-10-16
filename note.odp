@@ -1,1 +1,11 @@
-hello
+import matplotlib.pyplot as plt
+import pandas as pd
+
+data = {'Country': ['China', 'India', 'United States', 'Indonesia', 'Pakistan', 'Brazil', 'Nigeria', 'Bangladesh', 'Russia', 'Japan'], 'Urban Population': [854705000, 483098000, 275308000, 154828000, 75593000, 73403000, 65831000, 63466000, 62211000, 59674000]}
+plot_df = pd.DataFrame(data)
+plt.figure(figsize=(10,6))
+plt.bar(plot_df['Country'], plot_df['Urban Population'])
+plt.xlabel('Country')
+plt.ylabel('Urban Population')
+plt.title('Urban Population of 10 Countries')
+plt.savefig('urban_population_plot.png')
