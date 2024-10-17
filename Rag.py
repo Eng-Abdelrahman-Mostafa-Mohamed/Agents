@@ -18,12 +18,14 @@ from llama_index.core.agent import ReActAgent
 from code_runner_agent import code_runner_engine
 from llama_index.core.memory import ChatMemoryBuffer
 from llama_index.embeddings.openai import OpenAIEmbedding
+from dotenv import load_dotenv
+load_dotenv()
 
 # Set your API keys
-os.environ['GROQ-API-KEY'] = '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'
-os.environ['OPENAI_API_KEY'] = 'sk-mFBq7t6V5-OGh223N1le4a4q8RCoLjUUFU4Fms-7B5T3BlbkFJTOnS6lFV5F03K66Okiy1uKKOgBVLFSw7BLlKh4gtsA'
+# os.environ['GROQ-API-KEY'] = 'Your GROQ API Key'
+# os.environ['OPENAI_API_KEY'] = 'Your OpenAI API Key'
 
-# Initialize the Groq model with the latest Llama version
+# Initialize the Groq model with the Llama version 3 
 llm = Groq(model="llama3-70b-8192", api_key=os.getenv('GROQ-API-KEY'))
 
 # Set the LLM and embedding model in the settings
@@ -54,6 +56,7 @@ population_pandas_query_engine = PandasQueryEngine(
     instruction_str=instruction_str,
     synthesize_response=True
 )
+
 population_pandas_query_engine.update_prompts({"pandas_prompt": new_prompt})
 
 # Create tools for the agent
