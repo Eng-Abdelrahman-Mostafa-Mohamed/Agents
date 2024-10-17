@@ -15,6 +15,8 @@ from langchain.embeddings import HuggingFaceEmbeddings
 import os
 import nest_asyncio
 from dotenv import load_dotenv
+import torch
+torch.cuda.set_device(0)
 load_dotenv()
 nest_asyncio.apply()
 
