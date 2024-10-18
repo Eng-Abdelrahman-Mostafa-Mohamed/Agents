@@ -1,7 +1,15 @@
+# Import necessary modules after loading the API key
+from llama_index.core.tools import FunctionTool
+from llama_index.core.readers import SimpleDirectoryReader
+from llama_index.core import VectorStoreIndex, StorageContext, load_index_from_storage
+from llama_index.core.node_parser import SentenceSplitter
+from llama_index.core import Settings
+from llama_index.llms.groq import Groq
+from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+import torch
 import os
 import nest_asyncio
 from dotenv import load_dotenv
-import torch
 torch.cuda.set_device(0)
 # Load environment variables from .env file (if it exists)
 load_dotenv()
@@ -13,15 +21,7 @@ if api_key is None:
     print("Error: GROQ_API_KEY is not set. Please set it in your environment or .env file.")
     exit(1)
 
-# Import necessary modules after loading the API key
-from llama_index.core.tools import FunctionTool
-from llama_index.core.readers import SimpleDirectoryReader
-from llama_index.core import VectorStoreIndex, StorageContext, load_index_from_storage
-from llama_index.core.node_parser import SentenceSplitter
-from llama_index.core import Settings
-from llama_index.llms.groq import Groq
-from llama_index.embeddings.huggingface import HuggingFaceEmbedding
-import torch
+
 
 # Set CUDA device
 torch.cuda.set_device(0)
