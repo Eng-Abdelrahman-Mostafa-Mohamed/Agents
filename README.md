@@ -9,6 +9,7 @@
 ## RAG in Abstract
 Retrieval-Augmented Generation (RAG) is a technique that enhances the capabilities of language models by integrating retrieval mechanisms. It retrieves relevant documents or information from a large corpus and uses this retrieved data to generate more accurate and contextually relevant responses.
 
+![image](https://github.com/user-attachments/assets/0b5f6020-19b0-4f07-bfd6-b91269098f2c)
 ## Steps to Create Agents and PDF RAG
 
 ### Simple PDF RAG (from `pdf.py`)
