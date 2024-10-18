@@ -59,6 +59,7 @@ population_pandas_query_engine = PandasQueryEngine(
     verbose=True,
     instruction_str=instruction_str,
     synthesize_response=True
+    max_iterations=10000,
 )
 
 population_pandas_query_engine.update_prompts({"pandas_prompt": new_prompt})
