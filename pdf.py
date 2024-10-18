@@ -34,7 +34,7 @@ except Exception as e:
     exit(1)
 
 # Initialize the embedding model
-embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-en-v1.5")
+embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-en-v1.5",device="cuda" if torch.cuda.is_available() else "cpu")
 
 # Configure global settings to use Groq LLM and HuggingFace embedding
 Settings.llm = llm
