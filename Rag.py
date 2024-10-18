@@ -21,7 +21,7 @@ from llama_index.embeddings.openai import OpenAIEmbedding
 from dotenv import load_dotenv
 from pdf import embed_model
 import torch 
-torch.set_default_device('cuda')
+torch.cuda.set_device(0)
 load_dotenv()
 
 # Set your API keys
