@@ -1,5 +1,6 @@
 ## 1. Supervisor-Based Systems
-!Project supervisor-based.png
+
+!Project supervisor-based
 
 
 ## 2. Hierarchical Systems
