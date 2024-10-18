@@ -11,10 +11,10 @@ import os
 import nest_asyncio
 from dotenv import load_dotenv
 torch.cuda.set_device(0)
-# Load environment variables from .env file (if it exists)
+
 load_dotenv()
 
-# Access the API key from environment variables
+
 api_key = os.getenv('GROQ_API_KEY')
 
 if api_key is None:
@@ -23,7 +23,7 @@ if api_key is None:
 
 
 
-# Set CUDA device
+
 torch.cuda.set_device(0)
 
 # Initialize the Groq LLM with error handling
@@ -43,7 +43,7 @@ Settings.node_parser = SentenceSplitter(chunk_size=512, chunk_overlap=20)
 Settings.num_output = 10000
 Settings.context_window = 3900
 
-# Load data with error handling
+# Load data from the input files
 try:
     canada_docs = SimpleDirectoryReader(input_files=["discover.pdf"]).load_data()
 except Exception as e:
