@@ -28,7 +28,8 @@ Retrieval-Augmented Generation (RAG) is a technique that enhances the capabiliti
 6. **Integration and Testing**: Integrate all components and test the agent to ensure it performs as expected.
 
 ![Blank diagram(4)](https://github.com/user-attachments/assets/262f62ac-3c5f-4b87-91a8-26bf3ed2a069)
-By following these steps, you can create sophisticated agents that leverage RAG to provide accurate and contextually relevant responses.
+
+
 
 
 
