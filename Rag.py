@@ -58,7 +58,7 @@ population_pandas_query_engine = PandasQueryEngine(
     llm=llm,
     verbose=True,
     instruction_str=instruction_str,
-    synthesize_response=True
+    synthesize_response=True,
     max_iterations=10000,
 )
 
