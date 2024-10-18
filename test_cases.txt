@@ -1,6 +1,4 @@
-give me barchart plot for Population2023 of Afghanistan ,  Albania and Western Sahara then run generated code into terminal then save code as note
-plot to me the Population2023 of egypt and yemen as pie-chart plot run your generated code using your code_runner_engine aftafter that save correct code as note
-
-
-
-plot to me the __Population__ of egypt and yemen as pie-chart plot run your generated code using your code_runner_engine aftafter that save code that you generate  as note
+- give me barchart plot for Population2023 of Afghanistan ,  Albania and Western Sahara then run generated code into terminal then save code as note
+- plot to me the Population2023 of egypt and yemen as pie-chart plot run your generated code using your code_runner_engine aftafter that save correct code as note
+- plot to me the __Population__ of egypt and yemen as pie-chart plot run your generated code using your code_runner_engine aftafter that save code that you generate  as note (not same the column names it search and find )
+- plot to me the WorldShare of Afghanistan , Wallis & Futuna , Yemen as pie-chart and save it as image 

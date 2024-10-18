@@ -84,11 +84,12 @@ responser_noter_codeGeneration_agent = ReActAgent(
     verbose=True,
     context=f'The agent assists users by providing accurate information about world population statistics of local data which is {data_name}, generating code, and executing it.',
     memory=memory,
+    max_iterations=10000,
 )
 
 # Main loop for user interaction
 while (prompt := input("Enter a prompt (q to quit): ")) != "q":
-    # Process the query using the agent
+    
     try:
         result = responser_noter_codeGeneration_agent.query(prompt)
         # Print the agent's response
