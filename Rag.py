@@ -19,6 +19,7 @@ from code_runner_agent import code_runner_engine
 from llama_index.core.memory import ChatMemoryBuffer
 from llama_index.embeddings.openai import OpenAIEmbedding
 from dotenv import load_dotenv
+from pdf import embed_model
 load_dotenv()
 
 # Set your API keys
@@ -30,7 +31,8 @@ llm = Groq(model="llama3-70b-8192", api_key=os.getenv('GROQ-API-KEY'))
 
 # Set the LLM and embedding model in the settings
 Settings.llm = llm
-Settings.embed_model = OpenAIEmbedding(model="text-embedding-ada-002", embed_batch_size=100,api_key=os.getenv('OPENAI_API_KEY'))
+# Settings.embed_model = OpenAIEmbedding(model="text-embedding-ada-002", embed_batch_size=100,api_key=os.getenv('OPENAI_API_KEY'))
+Settings.embed_model = embed_model
 Settings.node_parser = SentenceSplitter(chunk_size=512, chunk_overlap=20)
 Settings.num_output = 512
 Settings.context_window = 3900

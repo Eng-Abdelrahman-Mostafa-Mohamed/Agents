@@ -1,1 +1,7 @@
-hello
+import matplotlib.pyplot as plt
+import pandas as pd
+data = {'Country': ['Egypt', 'Yemen'], 'Population': [101329021, 30851901]}
+df = pd.DataFrame(data)
+plt.pie(df['Population'], labels = df['Country'], autopct='%1.1f%%')
+plt.title('Population of Egypt and Yemen')
+plt.show()
