@@ -20,6 +20,8 @@ from llama_index.core.memory import ChatMemoryBuffer
 from llama_index.embeddings.openai import OpenAIEmbedding
 from dotenv import load_dotenv
 from pdf import embed_model
+import torch 
+torch.set_default_device('cuda')
 load_dotenv()
 
 # Set your API keys
