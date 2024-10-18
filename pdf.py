@@ -40,7 +40,7 @@ embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-en-v1.5")
 Settings.llm = llm
 Settings.embed_model = embed_model
 Settings.node_parser = SentenceSplitter(chunk_size=512, chunk_overlap=20)
-Settings.num_output = 10000
+Settings.num_output = 512
 Settings.context_window = 3900
 
 # Load data from the input files
@@ -63,7 +63,7 @@ index = load_index_from_storage(storage_context, persist_dir="./storage")
 query_engine = index.as_query_engine(llm=llm, verbose=True, max_iter=5)
 
 try:
-    response = query_engine.query("What is the basic way for life in Canada?")
+    response = query_engine.query("give me the basic 10 sentense information about canada 10000 token ?")
     print(response)
 except Exception as e:
     print(f"Error during query: {e}")
