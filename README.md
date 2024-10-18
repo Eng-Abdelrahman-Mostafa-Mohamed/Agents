@@ -1,4 +1,5 @@
-![Blank diagram(4)](https://github.com/user-attachments/assets/262f62ac-3c5f-4b87-91a8-26bf3ed2a069)# LLMS
+![Blank diagram(4)](https://github.com/user-attachments/assets/262f62ac-3c5f-4b87-91a8-26bf3ed2a069)
+# LLMS
     - Fine-Tunning --> Need High resources and not all times accurate 
     - RAG (Retrieval-Augmented Generation) is a method that combines retrieval-based and generation-based that approaches improves the accuracy and relevance of generated responses without training . 
 
