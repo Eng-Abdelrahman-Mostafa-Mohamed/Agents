@@ -3,7 +3,7 @@
 <table>
   <tr>
     <td><img src="supervisor-based.png" alt="Supervisor-Based Systems" width="300" style="border-radius: 15px;"></td>
-    <td><img src="https://github.com/user-attachments/assets/e8f8963a-db6d-4cb8-9c65-ba27ea761626"(https://github.com/user-attachments/assets/8231a7bc-d5cd-4a9d-a0ae-0fff2bead5e5)" alt="Screenshot from 2024-10-18 16-13-49" width="300" style="border-radius: 15px;"></td>
+    <td><img src="https://github.com/user-attachments/assets/26e95e0c-3f6f-44e6-90df-5d68c5661f85"(https://github.com/user-attachments/assets/8231a7bc-d5cd-4a9d-a0ae-0fff2bead5e5)" alt="Screenshot from 2024-10-18 16-13-49" width="300" style="border-radius: 15px;"></td>
   </tr>
 </table>
 
@@ -15,3 +15,4 @@
 
 ## 4. Equi-Level Systems
 <!-- Add your image here similarly -->
+
