@@ -63,7 +63,7 @@ index = load_index_from_storage(storage_context, persist_dir="./storage")
 query_engine = index.as_query_engine(llm=llm, verbose=True, max_iter=5)
 
 try:
-    response = query_engine.query("give me the basic 10 sentense information about canada 10000 token ?")
+    response = query_engine.query("Why i should travel to canada?")
     print(response)
 except Exception as e:
     print(f"Error during query: {e}")
