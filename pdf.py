@@ -1,7 +1,8 @@
 import os
 import nest_asyncio
 from dotenv import load_dotenv
-
+import torch
+torch.cuda.set_device(0)
 # Load environment variables from .env file (if it exists)
 load_dotenv()
 
