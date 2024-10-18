@@ -1,6 +1,6 @@
 # LLMS
     - Fine-Tunning --> Need High resources and not all times accurate 
-    - RAG (Retrieval-Augmented Generation) is a method that combines retrieval-based and generation-based that approaches improves the accuracy and relevance of generated responses without need training . 
+    - RAG (Retrieval-Augmented Generation) is a method that combines retrieval-based and generation-based that approaches improves the accuracy and relevance of generated responses without training . 
 
 # Agents
     - responder_and_note_saver population_Agent using Pandas_Query engine and custom note (saver Function_tool_engine) 
