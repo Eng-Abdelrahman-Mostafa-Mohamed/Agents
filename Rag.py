@@ -24,9 +24,11 @@ load_dotenv()
 
 # Set your API keys
 # os.environ['GROQ-API-KEY'] = 'Your GROQ API Key'
-# os.environ['OPENAI_API_KEY'] = 'Your OpenAI API Key'
+
+# os.environ['OPENAI_API_KEY'] = 'Your OpenAI API Key' <<<replaced with local embedding model which is  ("BAAI/bge-small-en-v1.5"") >>>
 
 # Initialize the Groq model with the Llama version 3 
+print(os.getenv('GROQ-API-KEY'))
 llm = Groq(model="llama3-70b-8192", api_key=os.getenv('GROQ-API-KEY'))
 
 # Set the LLM and embedding model in the settings
