@@ -1,4 +1,4 @@
-![Blank diagram(4)](https://github.com/user-attachments/assets/262f62ac-3c5f-4b87-91a8-26bf3ed2a069)
+
 # LLMS
     - Fine-Tunning --> Need High resources and not all times accurate 
     - RAG (Retrieval-Augmented Generation) is a method that combines retrieval-based and generation-based that approaches improves the accuracy and relevance of generated responses without training . 
@@ -27,7 +27,7 @@ Retrieval-Augmented Generation (RAG) is a technique that enhances the capabiliti
 5. **Custom Functions**: Implement custom functions like note savers or code runners to enhance the agent's capabilities.
 6. **Integration and Testing**: Integrate all components and test the agent to ensure it performs as expected.
 
-
+![Blank diagram(4)](https://github.com/user-attachments/assets/262f62ac-3c5f-4b87-91a8-26bf3ed2a069)
 By following these steps, you can create sophisticated agents that leverage RAG to provide accurate and contextually relevant responses.
 
 
