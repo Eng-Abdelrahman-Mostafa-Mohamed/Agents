@@ -18,8 +18,10 @@ RUN apt-get update && apt-get install -y \
 RUN pip3 install --upgrade pip && pip3 install uv
 RUN uv venv /app/.venv
 
+ARG HUGGINGFACE_TOKEN
+
 # Install embedding model from hugging face <english>
-RUN huggingface-cli download BAAI/bge-large-en-v1.5 --local-dir ./Agent/cached_embedding_model
+RUN huggingface-cli download BAAI/bge-large-en-v1.5 --local-dir ./Agent/cached_embedding_model --token HUGGINGFACE_TOKEN
 #it will automaticly install in correct directory in agents sub folder of Agenetic app 
 
 # Set PATH for virtual environment
@@ -57,4 +59,4 @@ ENV PATH="/app/.venv/bin:$PATH"
 COPY --from=builder /app/Agent /app/Agent
 EXPOSE 8000
 RUN cd Agent
-CMD [".venv/bin/python", "-m", "uvicorn", "API:app", "--host", "0.0.0.0", "--port", "9000", "--workers", "4"]
+CMD ["/app/.venv/bin/python", "-m", "uvicorn", "API:app", "--host", "0.0.0.0", "--port", "9000", "--workers", "4"]
