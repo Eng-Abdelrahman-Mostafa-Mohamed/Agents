@@ -17,7 +17,7 @@ import torch
 from fastapi import FastAPI
 import uvicorn
 
-torch.cuda.set_device(0)
+# torch.cuda.set_device(0)
 load_dotenv()
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 app = FastAPI()

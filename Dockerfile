@@ -1,8 +1,8 @@
-# ================================
-# Builder Stage (Minimal Install)
-# ================================
 
-FROM ubuntu:latest AS builder
+# ================================
+# Builder image stage
+# ================================
+FROM ubuntu:22.04 AS builder
 
 WORKDIR /app
 
@@ -10,11 +10,9 @@ WORKDIR /app
 # portaudio19-dev is required for pyaudio
 RUN apt-get update && apt-get install -y \
     python3.10 \
-    python3.10-venv \
     python3-pip \
     portaudio19-dev \ 
     && rm -rf /var/lib/apt/lists/*
-
 
 RUN pip3 install --upgrade pip && pip3 install uv
 RUN uv venv /app/.venv
@@ -22,12 +20,10 @@ RUN uv venv /app/.venv
 ARG HUGGINGFACE_TOKEN
 
 # Install embedding model from hugging face <english>
-RUN huggingface-cli download BAAI/bge-large-en-v1.5 --local-dir ./Agent/cached_embedding_model --token HUGGINGFACE_TOKEN
-#it will automaticly install in correct directory in agents sub folder of Agenetic app 
+RUN huggingface-cli download BAAI/bge-large-en-v1.5 --local-dir ./Agent/cached_embedding_model --token $HUGGINGFACE_TOKEN
 
 # Set PATH for virtual environment
 ENV PATH="/app/.venv/bin:$PATH"
-
 
 COPY Agent/API.py /app/Agent/API.py
 COPY Agent/Rag.py /app/Agent/Rag.py
@@ -38,18 +34,7 @@ COPY Agent/req.txt /app/Agent/req.txt
 COPY Agent/storage /app/Agent/storage
 COPY Agent/WorldPopulation2023.csv /app/Agent/WorldPopulation2023.csv
 
-
-# Install dependenciesRun docker build --build-arg HUGGINGFACE_TOKEN=*** -t abdelrahmanmostafamohamed/dataverse_agents:latest .
-  
-#0 building with "default" instance using docker driver
-#1 [internal] load build definition from Dockerfile
-#1 transferring dockerfile: 1.95kB done
-#1 DONE 0.0s
-#2 [internal] load metadata for docker.io/nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04
-#2 ...
-#3 [auth] nvidia/cuda:pull token for registry-1.docker.io
-#3 DONE 0.0s
-#4 [internal] load metadata for docker.io/nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04
+RUN uv pip install -r Agent/req.txt
 
 
 
@@ -57,7 +42,7 @@ COPY Agent/WorldPopulation2023.csv /app/Agent/WorldPopulation2023.csv
 # Final Image (Slim Runtime)
 # ================================
 
-FROM ubuntu:latest
+FROM ubuntu:22.04 AS final
 
 WORKDIR /app
 COPY --from=builder /app/.venv /app/.venv
