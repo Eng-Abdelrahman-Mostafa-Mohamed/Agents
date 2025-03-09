@@ -89,8 +89,8 @@ jobs:
         run: . .venv/bin/activate && uv pip install -r Agent/req.txt
 
       - name: Install PyTorch with CUDA 12.6
-        run: pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
-        if: runner.os == 'Linux' # Only runs on linux runners.
+        run: pip3 install torch torchvision torchaudio 
+        if: runner.os == 'Linux' 
 
       - name: Install huggingface_hub
         env:
