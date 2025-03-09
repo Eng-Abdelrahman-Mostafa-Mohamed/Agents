@@ -36,13 +36,18 @@ jobs:
 
       - name: Install PyTorch with CUDA 12.6
         run: pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
-
-      - name: Install bge-large-en-v1.5
+      
+      - name: hugging face hub
         env:
           HUGGINGFACE_TOKEN: ${{ secrets.HUGGINGFACE_TOKEN }}
         run: |
           uv pip install huggingface_hub
-          huggingface-cli download BAAI/bge-large-en-v1.5 --local-dir Agent/cached_embedding_model --token $HUGGINGFACE_TOKEN
+        
+      - name: Install bge-large-en-v1.5
+        env:
+          HUGGINGFACE_TOKEN: ${{ secrets.HUGGINGFACE_TOKEN }}
+        run: |
+          .venv/bin/huggingface-cli download BAAI/bge-large-en-v1.5 --local-dir Agent/cached_embedding_model --token $HUGGINGFACE_TOKEN
 
       - name: Run API for testing
         run: uv python Agents/API.py
