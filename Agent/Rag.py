@@ -19,7 +19,7 @@ import uvicorn
 
 torch.cuda.set_device(0)
 load_dotenv()
-
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 app = FastAPI()
 
 def setup_agent():
@@ -28,7 +28,7 @@ def setup_agent():
     model_name = "BAAI/bge-small-en-v1.5"
     # model_dir = "/home/abdelrahman/Documents/github/Agents/Agents/cached_embedding_model/snapshots/d4aa6901d3a41ba39fb536a557fa166f842b0e09"
     
-    model_dir = "Agents/cached_embedding_model/snapshots/d4aa6901d3a41ba39fb536a557fa166f842b0e09"
+    model_dir = "./Agent/cached_embedding_model/snapshots/d4aa6901d3a41ba39fb536a557fa166f842b0e09"
     if os.path.exists(model_dir):
         print("Loading the model...")
         embed_model = HuggingFaceEmbeddings(model_name=model_dir)
