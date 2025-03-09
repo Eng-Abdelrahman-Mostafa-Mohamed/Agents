@@ -29,8 +29,8 @@ jobs:
         run: source .venv/bin/activate
       
       - name: install pyaudio pre requesit
-        run: apt-get install -y portaudio19-dev   
-        
+        run: sudo apt-get install -y portaudio19-dev   
+
       - name: Install dependencies
         run: uv pip install -r Agent/req.txt
 
