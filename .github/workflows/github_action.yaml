@@ -43,7 +43,7 @@ jobs:
 
 
       - name: Build Docker image
-        run: docker build --build-arg -t abdelrahmanmostafamohamed/dataverse_agents:latest .
+        run: docker build -t abdelrahmanmostafamohamed/dataverse_agents:latest .
 
       - name: Push Docker image
         run: docker push abdelrahmanmostafamohamed/dataverse_agents:latest
