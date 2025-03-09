@@ -1,7 +1,8 @@
 # ================================
 # Builder Stage (Minimal Install)
 # ================================
-FROM nvidia/cuda:12.4.1-cudnn8-devel-ubuntu22.04 AS builder
+
+FROM nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04 AS builder
 
 WORKDIR /app
 
@@ -14,7 +15,7 @@ RUN apt-get update && apt-get install -y \
     portaudio19-dev \ 
     && rm -rf /var/lib/apt/lists/*
 
-# Install uv and create virtual environment
+
 RUN pip3 install --upgrade pip && pip3 install uv
 RUN uv venv /app/.venv
 
@@ -27,7 +28,7 @@ RUN huggingface-cli download BAAI/bge-large-en-v1.5 --local-dir ./Agent/cached_e
 # Set PATH for virtual environment
 ENV PATH="/app/.venv/bin:$PATH"
 
-# Copy only required files
+
 COPY req.txt /app/
 COPY Agent/API.py /app/Agent/API.py
 COPY Agent/Rag.py /app/Agent/Rag.py
@@ -51,7 +52,7 @@ RUN uv pip install torch torchvision torchaudio --index-url https://download.pyt
 # Final Image (Slim Runtime)
 # ================================
 
-FROM nvidia/cuda:12.4.1-cudnn8-runtime-ubuntu22.04
+FROM nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04
 
 WORKDIR /app
 COPY --from=builder /app/.venv /app/.venv
