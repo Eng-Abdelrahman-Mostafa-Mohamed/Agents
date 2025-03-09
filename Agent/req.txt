@@ -38,5 +38,5 @@ pyparsing==3.1.4
 pypdf==4.3.1
 tqdm==4.66.5
 transformers==4.45.2
-fastrc
+"fastrtc[vad, stt, tts]"
 pyaudio
