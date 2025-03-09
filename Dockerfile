@@ -57,4 +57,4 @@ ENV PATH="/app/.venv/bin:$PATH"
 COPY --from=builder /app/Agent /app/Agent
 EXPOSE 8000
 RUN cd Agent
-CMD ["python", "-m", "uvicorn", "API:app", "--host", "0.0.0.0", "--port", "9000", "--workers", "4"]
+CMD [".venv/bin/python", "-m", "uvicorn", "API:app", "--host", "0.0.0.0", "--port", "9000", "--workers", "4"]

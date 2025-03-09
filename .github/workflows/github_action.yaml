@@ -50,7 +50,7 @@ jobs:
           .venv/bin/huggingface-cli download BAAI/bge-large-en-v1.5 --local-dir Agent/cached_embedding_model --token $HUGGINGFACE_TOKEN
 
       - name: Run API for testing
-        run: cd Agent && python -m uvicorn API:app --host 0.0.0.0 --port 9000 --workers 4
+        run: cd Agent && .venv/bin/python -m uvicorn API:app --host 0.0.0.0 --port 9000 --workers 4
 
       
       - name: go to root directly to build docker image
