@@ -26,16 +26,16 @@ def setup_agent():
 
     llm = Groq(model="llama3-70b-8192", api_key=os.getenv('GROQ-API-KEY'))
     model_name = "BAAI/bge-small-en-v1.5"
-    # model_dir = "/home/abdelrahman/Documents/github/Agents/Agents/cached_embedding_model/snapshots/d4aa6901d3a41ba39fb536a557fa166f842b0e09"
-    
-    model_dir = "./Agent/cached_embedding_model/snapshots/d4aa6901d3a41ba39fb536a557fa166f842b0e09"
+    model_dir = "/home/abdelrahman/Documents/github/Agents/Agent/cached_embedding_model/snapshots/d4aa6901d3a41ba39fb536a557fa166f842b0e09"
     if os.path.exists(model_dir):
-        print("Loading the model...")
-        embed_model = HuggingFaceEmbeddings(model_name=model_dir)
+        print("Cached model found locally...")
+    
+        embed_model = HuggingFaceEmbeddings(model_name=model_name, cache_folder=model_dir)
     else:
-        print("model not found locally\n")
-        print("Downloading the model...\n")
+        print("Downloading model...")
         embed_model = HuggingFaceEmbeddings(model_name=model_name)
+        print("Saving model locally...")
+        embed_model.save_pretrained(model_dir)
         
     
     Settings.llm = llm
@@ -44,7 +44,7 @@ def setup_agent():
     Settings.num_output = 512
     Settings.context_window = 3900
 
-    data_name = "Agents/WorldPopulation2023.csv"
+    data_name = "Agent/WorldPopulation2023.csv"
     try:
         data = pd.read_csv(data_name)
         print("✅ Data loaded successfully")
