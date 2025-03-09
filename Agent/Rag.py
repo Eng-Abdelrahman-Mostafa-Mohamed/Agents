@@ -34,8 +34,8 @@ def setup_agent():
     else:
         print("Downloading model...")
         embed_model = HuggingFaceEmbeddings(model_name=model_name)
-        print("Saving model locally...")
-        embed_model.save_pretrained(model_dir)
+        # print("Saving model locally...")
+        # embed_model.save_pretrained(model_dir)
         
     
     Settings.llm = llm
