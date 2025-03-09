@@ -51,8 +51,12 @@ jobs:
       - name: Build Docker image
         run: docker build --build-arg HUGGINGFACE_TOKEN=${{ secrets.HUGGINGFACE_TOKEN }} -t abdelrahmanmostafamohamed/dataverse_agents:latest .
 
+      - name: Push Docker image
+        run: docker push abdelrahmanmostafamohamed/dataverse_agents:latest
+
       - name: Run Docker container
         run: docker run -d -p 9000:9000 yabdelrahmanmostafamohamed/dataverse_agents:latest
+
 
       - name: Wait for API to start
         run: sleep 10 # Adjust as needed
