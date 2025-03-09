@@ -1,0 +1,50 @@
+# Environment files
+.env
+.env.test
+.env.production
+
+# Dependency directories
+node_modules/
+dist/
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Model directories
+Agents/cached_embedding_model/*
+Agents/cached_embedding_model/blobs/37fca74771bc76a8e01178ce3a6055a0995f8093
+Agents/bge-large-en-v15/*
+
+# System files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+
+# Log files
+*.log
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Compiled files
+*.class
+*.exe
+*.dll
+*.so
+*.o
+
+# Archive files
+*.zip
+*.tar.gz
+*.rar
+
+# Temporary files
+*.tmp
+*.temp

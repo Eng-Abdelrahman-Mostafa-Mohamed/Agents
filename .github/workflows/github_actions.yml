@@ -1,0 +1,57 @@
+name: Develop Workflow
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'  
+
+      - name: Install uv
+        run: pip install uv
+
+      - name: Create uv environment
+        run: uv venv .venv
+
+      - name: Activate uv environment
+        run: source .venv/bin/activate
+      
+      - name: go to Agents directory
+        run: cd Agents
+
+      - name: Install dependencies
+        run: uv pip install -r req.txt
+
+      - name: Install PyTorch with CUDA 12.6
+        run: pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
+
+      - name: Install bge-large-en-v1.5
+        env:
+          HUGGINGFACE_TOKEN: ${{ secrets.HUGGINGFACE_TOKEN }} 
+        run: |
+          uv pip install huggingface_hub
+          huggingface-cli download BAAI/bge-large-en-v1.5 --local-dir ./cached_embedding_model --token $HUGGINGFACE_TOKEN
+
+      - name: Run API for testing
+        run: uv python Agents/API.py
+      
+      - name: go to root directly to build docker image
+        run: cd ..
+        
+      - name: Build Docker image
+        run: docker build -t Dataverse:latest .
+
+      - name: Run Docker container
+        run: docker run -d Dataverse:latest
