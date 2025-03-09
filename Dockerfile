@@ -59,5 +59,4 @@ COPY --from=builder /app/.venv /app/.venv
 ENV PATH="/app/.venv/bin:$PATH"
 COPY --from=builder /app/Agent /app/Agent
 EXPOSE 8000
-RUN cd Agent
-CMD ["/app/.venv/bin/python", "-m", "uvicorn", "API:app", "--host", "0.0.0.0", "--port", "9000", "--workers", "4"]
+CMD ["fastapi","dev","Agent/API.py","--reload","--host","0.0.0.0","--port","8000"]
