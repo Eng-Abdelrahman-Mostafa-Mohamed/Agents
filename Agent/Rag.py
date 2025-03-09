@@ -26,7 +26,7 @@ def setup_agent():
 
     llm = Groq(model="llama3-70b-8192", api_key=os.getenv('GROQ-API-KEY'))
     model_name = "BAAI/bge-small-en-v1.5"
-    model_dir = "/home/abdelrahman/Documents/github/Agents/Agent/cached_embedding_model/snapshots/d4aa6901d3a41ba39fb536a557fa166f842b0e09"
+    model_dir = "./Agent/cached_embedding_model/snapshots/d4aa6901d3a41ba39fb536a557fa166f842b0e09"
     if os.path.exists(model_dir):
         print("Cached model found locally...")
     
