@@ -1,0 +1,1 @@
+Pie chart of Land Area(Km²) has been generated and displayed in the terminal.

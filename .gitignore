@@ -13,13 +13,14 @@ __pycache__/
 *.pyo
 *.pyd
 
+!Agents/
 # Model directories
 # Ignore specific cached model files
-Agents/cached_embedding_model/*
-Agents/cached_embedding_model/blobs/37fca74771bc76a8e01178ce3a6055a0995f8093
-Agents/bge-large-en-v15/*
+Agent/cached_embedding_model/*
+Agent/cached_embedding_model/blobs/37fca74771bc76a8e01178ce3a6055a0995f8093
+Agent/bge-large-en-v15/*
 
-!Agents/
+
 
 # System files
 .DS_Store
