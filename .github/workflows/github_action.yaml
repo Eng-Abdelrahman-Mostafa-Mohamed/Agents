@@ -28,8 +28,8 @@ jobs:
       - name: Activate uv environment
         run: source .venv/bin/activate
       
-      - name: go to Agents directory
-        run: cd Agents
+      - name: go to Agent directory
+        run: cd Agent
 
       - name: Install dependencies
         run: uv pip install -r req.txt
