@@ -2,7 +2,7 @@
 # Builder Stage (Minimal Install)
 # ================================
 
-FROM nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04 AS builder
+FROM ubuntu:latest AS builder
 
 WORKDIR /app
 
@@ -42,9 +42,17 @@ COPY Agent/bge-large-en-v1.5 /app/Agent/bge-large-en-v1.5
 COPY Agent/WorldPopulation2023.csv /app/Agent/WorldPopulation2023.csv
 
 
-# Install dependencies
-RUN uv pip install -r req.txt
-RUN uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
+# Install dependenciesRun docker build --build-arg HUGGINGFACE_TOKEN=*** -t abdelrahmanmostafamohamed/dataverse_agents:latest .
+  
+#0 building with "default" instance using docker driver
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.95kB done
+#1 DONE 0.0s
+#2 [internal] load metadata for docker.io/nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04
+#2 ...
+#3 [auth] nvidia/cuda:pull token for registry-1.docker.io
+#3 DONE 0.0s
+#4 [internal] load metadata for docker.io/nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04
 
 
 
@@ -52,7 +60,7 @@ RUN uv pip install torch torchvision torchaudio --index-url https://download.pyt
 # Final Image (Slim Runtime)
 # ================================
 
-FROM nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04
+FROM ubuntu:latest
 
 WORKDIR /app
 COPY --from=builder /app/.venv /app/.venv
