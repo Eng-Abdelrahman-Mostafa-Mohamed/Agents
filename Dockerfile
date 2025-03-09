@@ -17,10 +17,10 @@ RUN apt-get update && apt-get install -y \
 RUN pip3 install --upgrade pip && pip3 install uv
 RUN uv venv /app/.venv
 
-ARG HUGGINGFACE_TOKEN
+# ARG HUGGINGFACE_TOKEN
 
 # Install embedding model from hugging face <english>
-RUN huggingface-cli download BAAI/bge-large-en-v1.5 --local-dir ./Agent/cached_embedding_model --token $HUGGINGFACE_TOKEN
+# RUN huggingface-cli download BAAI/bge-large-en-v1.5 --local-dir ./Agent/cached_embedding_model --token $HUGGINGFACE_TOKEN
 
 # Set PATH for virtual environment
 ENV PATH="/app/.venv/bin:$PATH"
