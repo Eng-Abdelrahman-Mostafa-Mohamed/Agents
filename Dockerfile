@@ -29,7 +29,6 @@ RUN huggingface-cli download BAAI/bge-large-en-v1.5 --local-dir ./Agent/cached_e
 ENV PATH="/app/.venv/bin:$PATH"
 
 
-COPY req.txt /app/
 COPY Agent/API.py /app/Agent/API.py
 COPY Agent/Rag.py /app/Agent/Rag.py
 COPY Agent/prompt.py /app/Agent/prompt.py
