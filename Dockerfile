@@ -37,8 +37,6 @@ COPY Agent/code_runner_agent.py /app/Agent/code_runner_agent.py
 COPY Agent/Data_analyst_API.py /app/Agent/Data_analyst_API.py
 COPY Agent/req.txt /app/Agent/req.txt
 COPY Agent/storage /app/Agent/storage
-COPY Agent/cached_embedding_model /app/Agent/cached_embedding_model
-COPY Agent/bge-large-en-v1.5 /app/Agent/bge-large-en-v1.5
 COPY Agent/WorldPopulation2023.csv /app/Agent/WorldPopulation2023.csv
 
 
