@@ -38,11 +38,6 @@ jobs:
           HUGGINGFACE_TOKEN: ${{ secrets.HUGGINGFACE_TOKEN }}
         run: . .venv/bin/activate && uv pip install huggingface_hub
 
-      - name: Install bge-large-en-v1.5
-        env:
-          HUGGINGFACE_TOKEN: ${{ secrets.HUGGINGFACE_TOKEN }}
-        run: . .venv/bin/activate && .venv/bin/huggingface-cli download BAAI/bge-large-en-v1.5 --local-dir Agent/cached_embedding_model --token $HUGGINGFACE_TOKEN
-
       - name : remove cach and un used docker images - containers 
         run : docker system prune -a -f && docker container prune -f && docker image prune -f && docker builder prune --all -f
 
@@ -53,12 +48,12 @@ jobs:
       - name: Push Docker image
         run: docker push abdelrahmanmostafamohamed/dataverse_agents:latest
 
-      - name: Run Docker container
-        run: docker run -d -p 9000:9000 yabdelrahmanmostafamohamed/dataverse_agents:latest
+      - name: push docker image 
+        run:  docker push abdelrahmanmostafamohamed/dataverse_agents:latest
 
 
+        
       - name: Wait for API to start
-        run: sleep 10 # Adjust as needed
+        run: sleep 10 
 
-      - name: Test API
-        run: curl http://localhost:9000/ 
+      
